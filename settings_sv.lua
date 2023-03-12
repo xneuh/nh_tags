@@ -1,11 +1,11 @@
 Settings = {}
 
-Settings.TagCommand = "roles"
+Settings.TagCommand = "tag"
 Settings.StreamerCommand = "streamer"
 
 Settings.DiscordSettings = {
     -- TOKEN OF BOT THAT IS IN GUILD THAT WE'LL BE USING
-    ["DiscordToken"] = "OTgzMTM5NzM1MjY0NDQ0NDE2.GAv-wQ.6wnUXgLRweIyCpuic6HB7fwXwdeY4EN3ueKmh4",
+    ["DiscordToken"] = "BOT-TOKEN",
     -- ID OF GUILD THAT WE'LL BE USING
 	["GuildId"] = "974784638805499975",
 
