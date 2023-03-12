@@ -7,7 +7,7 @@ Settings.DiscordSettings = {
     -- TOKEN OF BOT THAT IS IN GUILD THAT WE'LL BE USING
     ["DiscordToken"] = "BOT-TOKEN",
     -- ID OF GUILD THAT WE'LL BE USING
-	["GuildId"] = "974784638805499975",
+	["GuildId"] = "GUILD-ID",
 
 	["Roles"] = {
         -- ["ROLE-ID"] = "ROLE-NAME"
