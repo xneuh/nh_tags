@@ -7,11 +7,17 @@ CreateThread(function()
         Ped = {
             ["Id"] = PlayerPedId()
         }
-        ESX.TriggerServerCallback("nh_tags:GetActiveTags", function(res)
-            Tags = res["Tags"]
-            Streamers = res["Streamers"]
-        end)
     end
+end)
+
+CreateThread(function()
+	while (true) do 
+		Wait(10000)
+		ESX.TriggerServerCallback("nh_tags:GetActiveTags", function(res)
+		    Tags = res["Tags"]
+		    Streamers = res["Streamers"]
+		end)
+	end
 end)
 
 CreateThread(function()
