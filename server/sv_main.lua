@@ -59,7 +59,7 @@ HasRole = function(source, roleName)
         end
     end
     return false
-end
+end 
 
 GetTag = function(source)
     local src = source
