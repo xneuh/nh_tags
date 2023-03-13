@@ -1,9 +1,18 @@
 local FormattedToken = "Bot " .. Settings.DiscordSettings.DiscordToken
+GlobalState.Tags, GlobalState.Streamers = nil 
 local Tags = {}
 local Streamers = {}
 
-ESX.RegisterServerCallback("nh_tags:GetActiveTags", function(source, cb)
-    cb({["Tags"] = Tags, ["Streamers"] = Streamers})
+CreateThread(function()
+    while (true) do 
+        Wait(2500)
+        GlobalState.Tags, GlobalState.Streamers = Tags, Streamers
+    end
+end)
+
+RegisterCommand('printxd', function()
+    print(json.encode(GlobalState.Tags))
+    print(json.encode(GlobalState.Streamers))
 end)
 
 DiscordRequest = function(requestMethod, requestEndPoint, JSON)
