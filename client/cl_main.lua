@@ -1,4 +1,4 @@
-local Ped, Tags, Streamers = {}
+local Ped = {}
 local isDisplaying = false
 
 CreateThread(function()
@@ -8,16 +8,6 @@ CreateThread(function()
             ["Id"] = PlayerPedId()
         }
     end
-end)
-
-CreateThread(function()
-	while (true) do 
-		Wait(10000)
-		ESX.TriggerServerCallback("nh_tags:GetActiveTags", function(res)
-		    Tags = res["Tags"]
-		    Streamers = res["Streamers"]
-		end)
-	end
 end)
 
 CreateThread(function()
@@ -34,11 +24,11 @@ CreateThread(function()
                     }
                     if (#(boneCoords["PlayerCoords"] - boneCoords["TargetCoords"]) < Settings.DrawDistance) then
                         
-                        if (Tags[GetPlayerServerId(player)]) then 
-                            DrawText3DSmall(boneCoords["TargetCoords"].x, boneCoords["TargetCoords"].y, boneCoords["TargetCoords"].z + 0.8, Tags[GetPlayerServerId(player)] .. " | " .. GetPlayerName(player), Settings.TagColors[Tags[GetPlayerServerId(player)]])
+                        if (GlobalState.Tags[GetPlayerServerId(player)]) then 
+                            DrawText3DSmall(boneCoords["TargetCoords"].x, boneCoords["TargetCoords"].y, boneCoords["TargetCoords"].z + 0.8, GlobalState.Tags[GetPlayerServerId(player)] .. " | " .. GetPlayerName(player), Settings.TagColors[GlobalState.Tags[GetPlayerServerId(player)]])
                         end
     
-                        if (Streamers[GetPlayerServerId(player)]) then 
+                        if (GlobalState.Streamers[GetPlayerServerId(player)]) then 
                             DrawText3DSmall(boneCoords["TargetCoords"].x, boneCoords["TargetCoords"].y, boneCoords["TargetCoords"].z + 0.92, "Streamer", Settings.TagColors["Streamer"])
                         end
                     end
