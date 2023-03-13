@@ -10,11 +10,6 @@ CreateThread(function()
     end
 end)
 
-RegisterCommand('printxd', function()
-    print(json.encode(GlobalState.Tags))
-    print(json.encode(GlobalState.Streamers))
-end)
-
 DiscordRequest = function(requestMethod, requestEndPoint, JSON)
     local data = nil
 
