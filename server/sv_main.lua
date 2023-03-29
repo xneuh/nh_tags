@@ -1,14 +1,5 @@
 local FormattedToken = "Bot " .. Settings.DiscordSettings.DiscordToken
-GlobalState.Tags, GlobalState.Streamers = nil 
-local Tags = {}
-local Streamers = {}
-
-CreateThread(function()
-    while (true) do 
-        Wait(2500)
-        GlobalState.Tags, GlobalState.Streamers = Tags, Streamers
-    end
-end)
+GlobalState.Tags, GlobalState.Streamers = {}, {}
 
 DiscordRequest = function(requestMethod, requestEndPoint, JSON)
     local data = nil
@@ -77,12 +68,12 @@ RegisterCommand(Settings.TagCommand, function(source)
     local userTag = GetTag(src)
 
     if (userTag) then
-        if (not Tags[src]) then 
+        if (not GlobalState.Tags[src]) then 
             data.showNotification("~b~Pomyślnie Włączono Tag ~r~[" .. userTag .. "]")
-            Tags[src] = userTag
+            GlobalState.Tags[src] = userTag
         else
             data.showNotification("~b~Pomyślnie Wyłączono Tag ~r~[" .. userTag .. "]")
-            Tags[src] = false
+            GlobalState.Tags[src] = false
         end
     else
         data.showNotification("~b~Twoja Rola nie posiada Tagu!")
@@ -95,11 +86,11 @@ RegisterCommand(Settings.StreamerCommand, function(source)
     local data = ESX.GetPlayerFromId(src)
 
     if (HasRole(src, "Streamer")) then 
-        if (not Streamers[src]) then 
-            Streamers[src] = true
+        if (not GlobalState.Streamers[src]) then 
+            GlobalState.Streamers[src] = true
             data.showNotification("~b~Włączono Tag Streamera")
         else
-            Streamers[src] = false 
+            GlobalState.Streamers[src] = false 
             data.showNotification("~b~Wyłączono Tag Streamera")
         end
     else
