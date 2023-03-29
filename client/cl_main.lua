@@ -1,25 +1,23 @@
-local Ped = {}
+local ppid = PlayerPedId()
 local isDisplaying = false
 
 CreateThread(function()
-    while (true) do 
+    while true do 
         Wait(2500)
-        Ped = {
-            ["Id"] = PlayerPedId()
-        }
+        ppid = PlayerPedId()
     end
 end)
 
 CreateThread(function()
-	while true do
-		Wait(0)
+    while true do 
+        Wait(0)
 
         if (isDisplaying) then 
             for _, player in ipairs(GetActivePlayers()) do
                 if (id ~= player) then
                     local playerPed = GetPlayerPed(player)
                     local boneCoords = {
-                        ["PlayerCoords"] = GetPedBoneCoords(Ped.Id, 31086, -0.4, 0.0, 0.0),
+                        ["PlayerCoords"] = GetPedBoneCoords(ppid, 31086, -0.4, 0.0, 0.0),
                         ["TargetCoords"] = GetPedBoneCoords(playerPed, 31086, -0.4, 0.0, 0.0)
                     }
                     if (#(boneCoords["PlayerCoords"] - boneCoords["TargetCoords"]) < Settings.DrawDistance) then
@@ -37,13 +35,13 @@ CreateThread(function()
         else
             Wait(255)
         end				
-	end
+    end
 end)
 
 function DrawText3DSmall(x, y, z, text, color)
     local onScreen, _x, _y = World3dToScreen2d(x,y,z)
 	
-	local scale = (1 / #(GetGameplayCamCoords() - vec3(x, y, z))) * 1.0
+    local scale = (1 / #(GetGameplayCamCoords() - vec3(x, y, z))) * 1.0
     local fov = (1 / GetGameplayCamFov()) * 100
     scale = scale * fov
     
